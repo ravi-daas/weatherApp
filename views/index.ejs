@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 200px;
+    }
+
+    button {
+      padding: 8px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #weather-info {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #weather-info p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weather App</h1>
+  <form action="/weather" method="GET">
+    <label for="city">Enter City:</label>
+    <input type="text" id="city" name="city" required>
+    <button type="submit">Get Weather</button>
+  </form>
+  <div id="weather-info">
+    <!-- Check if weather data is available -->
+    <% if(isCityFound) { %>
+      <h2>Weather Information for <%= weather.name %>:</h2>
+      <p>Temperature: <%= weather.main.temp %>°C</p>
+      <p>Feels Like: <%= weather.main.feels_like %>°C</p>
+      <p>Description: <%= weather.weather[0].description %></p>
+      <p>Visibility: <%= weather.visibility %> meters</p>
+      <p>Wind Speed: <%= weather.wind.speed %> m/s</p>
+      <!-- Add more weather data as needed -->
+    <% } else { %>
+      <p>City Not Found.</p>
+    <% } %>
+  </div>
+</body>
+</html>
